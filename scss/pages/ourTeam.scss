@@ -1,0 +1,443 @@
+@import "../themes/variables";
+@import "../themes/mixin";
+@import "../base/base";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1195px;
+}
+
+// header
+
+.header {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 147px;
+
+    .logo {
+      img {
+        height: 80px;
+        width: 80px;
+      }
+    }
+    .header-left {
+      display: flex;
+      justify-content: center;
+      .navbar {
+        a {
+          @include styleText($text-xl, $fw-semibold, $c0-dark);
+          padding-right: 50px;
+          &:hover {
+            color: $c0-primary;
+            transition: 0.3s;
+          }
+        }
+      }
+      .btn-phone {
+        line-height: 80px;
+        button {
+          // color: $c0-light;
+          // background-color: $bg-c0-primary;
+          // padding: 15px 20px;
+          @include button(
+            $bg-c0-primary,
+            $p-15-20,
+            1px solid $c0-primary,
+            40px,
+            $text-base,
+            $fw-semibold,
+            $c0-light,
+            $bg-c0-light,
+            $c0-primary
+          );
+        }
+      }
+      .social-contact {
+        line-height: 80px;
+        a {
+          margin-left: 12px;
+          @include styleText($text-base, $fw-semibold, $c0-dark);
+          transition: 0.3s;
+          &:hover {
+            color: $c0-primary;
+          }
+        }
+      }
+    }
+  }
+}
+
+// about
+.about {
+  background-image: url(/images/yellow_top_wave_01.png),
+    url(/images/Violet_top_left_wave.png);
+  background-position: top, bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  .container {
+    padding: 60px 0;
+    .row {
+      position: relative;
+      .about-text {
+        animation: fade-left;
+        animation-duration: 0.5s;
+        position: absolute;
+        top: 30%;
+        h3 {
+          @include styleText($text-2xl, $fw-bold, $c0-primary);
+        }
+        p {
+          @include styleText($text-5xl, $fw-bold, $c0-dark);
+        }
+      }
+      .about-img {
+        animation: hide-show;
+        animation-duration: 0.5s;
+      }
+    }
+  }
+}
+
+.info {
+  background-image: url(/images/Wave_White_bottom_right_shape_01.png);
+  background-position: top;
+  background-size: contain;
+  // background-repeat: no-repeat;
+  .container {
+    .row {
+      .col {
+        //chạy vòng for để chạy animation lần lượt cho các item
+        @for $i from 1 to 9 {
+          .item-#{$i} {
+            animation: hide-show;
+            animation-duration: #{$i * 0.5}s;
+          }
+        }
+        .item {
+          transition: 0.3s;
+          border-radius: 15px;
+
+          // backface-visibility: hidden;
+          &:hover {
+            box-shadow: 1px 10px 17px -1px rgba(0, 0, 0, 0.72);
+          }
+
+          .thumb {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            // border-radius: 15px;
+            overflow: hidden;
+            img {
+              width: 100%;
+              border-top-left-radius: 15px;
+              border-top-right-radius: 15px;
+              transition: 0.9s;
+
+              &:hover {
+                transform: scale(1.05);
+              }
+            }
+          }
+          .card-body {
+            text-align: center;
+            background-color: $bg-c0-light;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            p:first-child {
+              @include styleText($text-base, $fw-bold, $c0-primary);
+              padding-top: 25px;
+              margin-bottom: 0;
+            }
+            p:nth-of-type(2) {
+              @include styleText($text-3xl, $fw-bold, $c0-dark);
+              padding-top: 10px;
+            }
+          }
+
+          margin: 20px;
+        }
+      }
+    }
+  }
+}
+
+.contact {
+  background-image: url(/images/accent_bottom_wave_01.png);
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  padding-top: 60px;
+  .container {
+    margin: 0 260px;
+
+    .row {
+      margin-top: 60px;
+      .col-left {
+        animation: fade-left;
+        animation-duration: 0.5s;
+        .left-img {
+          margin: 0 40px;
+          img {
+            width: 100%;
+          }
+        }
+      }
+      .col-right {
+        animation: hide-show;
+        animation-duration: 0.5s;
+
+        .right-form {
+          box-shadow: 0 30px 30px -10px rgb(0 0 0 / 20%);
+          padding: 0 25px;
+          border-radius: 10px;
+          width: fit-content;
+          background-color: #fff;
+          margin-bottom: 25px;
+          h3 {
+            @include styleText($text-4xl, $fw-bold, $c0-dark);
+            padding: 20px 0;
+          }
+
+          .name-email {
+            display: flex;
+            justify-content: flex-start;
+            margin: 15px 0;
+            .name {
+              margin-right: 20px;
+              border: 1px solid #ccc;
+              padding: 8px;
+              border-radius: 30px;
+              i {
+                color: $c0-primary;
+                padding: 10px;
+              }
+              input {
+                border: none;
+                outline: none;
+                width: 96px;
+              }
+            }
+            .email {
+              border: 1px solid #ccc;
+              padding: 8px;
+              border-radius: 30px;
+              i {
+                color: $c0-primary;
+                padding: 10px;
+              }
+              input {
+                border: none;
+                outline: none;
+                width: 96px;
+              }
+            }
+          }
+          .courses {
+            margin: 15px 0;
+
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 30px;
+            width: 320px;
+            i {
+              color: $c0-primary;
+              padding: 10px;
+            }
+            select {
+              cursor: pointer;
+              border: none;
+              outline: none;
+            }
+          }
+          .message {
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 30px;
+            width: 320px;
+            i {
+              color: $c0-primary;
+              padding: 10px;
+            }
+            textarea {
+              border: none;
+              outline: none;
+            }
+          }
+          .send-button {
+            button {
+              @include button();
+              width: 150px;
+              margin: 20px 0 90px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  background-image: url(/images/footer_background.jpg);
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 120px 0;
+
+  .container {
+    .row {
+      @for $i from 1 to 5 {
+        .item-#{$i} {
+          animation: hide-show;
+          animation-duration: #{$i * 0.5}s;
+        }
+      }
+      .contact-us {
+        padding: 0 40px;
+
+        .item {
+          h3 {
+            padding-bottom: 30px;
+            @include styleText($text-3xl, $fw-bold, $c0-light);
+          }
+          i {
+            padding-right: 8px;
+            color: #fff;
+            &:hover {
+              color: $c0-dark;
+            }
+            // width: 10px;
+          }
+          span {
+            @include styleText($text-xl, $fw-regular, $c0-light);
+          }
+          .footer-social {
+            margin-top: 25px;
+
+            a {
+              padding-right: 8px;
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+      .quick-links {
+        padding: 0 40px;
+        .item {
+          h3 {
+            padding-bottom: 30px;
+            @include styleText($text-3xl, $fw-bold, $c0-light);
+          }
+          a:first-of-type {
+            padding-top: 0;
+          }
+
+          a {
+            @include styleText($text-xl, $fw-regular, $c0-light);
+            display: block;
+            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+            padding: 12px 0;
+            width: 60px;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+      .about-us {
+        padding: 0 40px;
+        .item {
+          h3 {
+            padding-bottom: 30px;
+            @include styleText($text-3xl, $fw-bold, $c0-light);
+          }
+          a:first-of-type {
+            padding-top: 0;
+          }
+          a {
+            @include styleText($text-xl, $fw-regular, $c0-light);
+            width: 75px;
+            display: block;
+            border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+            padding: 12px 0;
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+      }
+      .letter {
+        padding: 0 40px;
+        .item {
+          h3 {
+            padding-bottom: 30px;
+            @include styleText($text-3xl, $fw-bold, $c0-light);
+          }
+          input {
+            color: #fff;
+            background-color: transparent;
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 30px;
+            border: 1px solid rgba($color: #000000, $alpha: 0.1);
+            width: 100%;
+            &:focus {
+              border: 1px solid #fff;
+            }
+          }
+          button {
+            @include button(
+              $bg-c0-light,
+              $p-15-20,
+              1px solid $c0-light,
+              40px,
+              $text-base,
+              $fw-semibold,
+              $c0-dark,
+              $bg-c0-primary,
+              $c0-light
+            );
+            width: 100%;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+//animation
+@keyframes hide-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-left {
+  from {
+    transform: translateX(-200px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
